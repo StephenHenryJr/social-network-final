@@ -3,9 +3,11 @@ const validator = require("validator");
 const User = require("../models/User");
 
 exports.getLogin = (req, res) => {
+  // Checks if a user is logged in and if so will redirect them to their profile
   if (req.user) {
     return res.redirect("/profile");
   }
+  //Otherwise it will render the login page
   res.render("login", {
     title: "Login",
   });
@@ -17,7 +19,6 @@ exports.postLogin = (req, res, next) => {
     validationErrors.push({ msg: "Please enter a valid email address." });
   if (validator.isEmpty(req.body.password))
     validationErrors.push({ msg: "Password cannot be blank." });
-
   if (validationErrors.length) {
     req.flash("errors", validationErrors);
     return res.redirect("/login");
