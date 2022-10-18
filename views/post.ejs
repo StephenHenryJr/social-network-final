@@ -4,6 +4,7 @@
 
   <div>
     <h2><%= post.title %></h2>
+    <h3>Posted by: <%= post.postedByName %></h3>
     <img src="<%= post.image%>" />
     <div>
       <form action="/post/likePost/<%= post.id %>?_method=PUT" method="POST">
@@ -36,15 +37,16 @@
     <h2>Comments:</h2>
     <ul>
       <% for(var i=0; i<comments.length; i++) {%>
-      <li class="">
-        <%= comments[i].createdByName%>:<br>
+      <li>
+        <%= comments[i].createdByName%>:
         <%= comments[i].comment%><br>
-        <%= comments[i]._id%><br>
+        
         <% if(user.id == comments[i].createdById) { %>
-          <form action="/comment/deleteComment/<%= comments[i]._id %>?_method=DELETE" method="POST">
+          <form action="/comment/deleteComment/<%=post._id%>/<%= comments[i]._id%>?_method=DELETE" method="POST">
             <button type="submit">Delete</button>
           </form>
         <% } %> 
+
       </li>
       <% } %>
     </ul>
