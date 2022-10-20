@@ -3,12 +3,14 @@
 <main>
   <div>
     <section>
+      <!-- Will determine if there are any errors at the time of sign in -->
       <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
       <div><%= el.msg %></div>
       <% }) %> <% } %> <% if (locals.messages.info) { %> <%
       messages.info.forEach( el => { %>
       <div><%= el.msg %></div>
       <% }) %> <% } %>
+
       <form action="/login" method="POST">
         <div>
           <label for="exampleInputEmail1">Email address</label>
