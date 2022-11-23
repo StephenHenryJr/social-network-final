@@ -1,4 +1,5 @@
 <%- include('partials/header') -%>
+
 <div>
 
   <div>
@@ -7,6 +8,7 @@
       <p><strong>Email</strong>: <%= user.email %></p>
       <a href="/logout">Logout</a>
     </div>
+    
     <div>
       <h2>Add a post</h2>
       <form action="/post/createPost" enctype="multipart/form-data" method="POST">
@@ -43,4 +45,5 @@
   </div>
 
 </div>
+
 <%- include('partials/footer') -%>

@@ -63,7 +63,7 @@ exports.getSignup = (req, res) => {
   }
   res.render("signup", {
     title: "Create Account",
-  });
+  }); 
 };
 
 exports.postSignup = (req, res, next) => {
