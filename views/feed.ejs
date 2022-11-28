@@ -1,23 +1,36 @@
 <%- include('partials/header') -%>
 
-<div>
-  <ul>
-    <% for(var i=0; i<posts.length; i++) {%>
-    <li>
-      <%= posts[i].postedByName%>:<br>
-      <a href="/post/<%= posts[i]._id%>">
-        <img src="<%= posts[i].image%>">
-      </a>
-    </li>
+<div class="min-h-screen flex justify-center items-center">
+  <div class="w-fit p-4  rounded-lg bg-slate-50 shadow-xl">
+
+    <h1 class="m-2 p-4 text-stone-400 text-center text-6xl font-mono"><a href="/profile">talkBx <span class="underline decoration-pink-400">MVC</span></a></h1>
+    
+    <ul>
+      <% for(var i=0; i<posts.length; i++) {%>
+      <li>
+        <div class="flex justify-between">
+          <span class="text-xl font-bold">
+            <%= posts[i].title%>
+          </span>
+          <span><a href=""><%= posts[i].postedByName%></a></span>
+        </div>
+        <a href="/post/<%= posts[i]._id%>">
+          <img src="<%= posts[i].image%>" class="m-auto">
+        </a>
+      </li>
+      <div class="flex my-2">
+        <form action="/post/likePost/<%= posts[i]._id %>?_method=PUT" method="POST">
+          <button type="submit" class="fa-regular fa-thumbs-up"></button>
+        </form>
+        <h3 class="mx-2"><%= posts[i].likes %></h3>
+      </div>
+      <% } %>
+    </ul>
+
     <div>
-      <form action="/post/likePost/<%= posts[i]._id %>?_method=PUT" method="POST">
-        <button type="submit">Like</button>
-      </form>
-      <h3>Likes: <%= posts[i].likes %></h3>
-    <% } %>
-  </ul>
-  <div>
-    <a href="/profile">Return to Profile</a>
+      <a href="/profile" class="text-pink-500">Return to Profile</a>
+    </div>
+    
   </div>
 </div>
 
