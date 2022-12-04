@@ -1,13 +1,15 @@
 <%- include('partials/header') -%>
 
+<!-- Initial setup of our container ahd header -->
 <div class="min-h-screen flex justify-center items-center">
   <div class="w-fit p-4  rounded-lg bg-slate-50 shadow-xl">
-
-    <h1 class="m-2 p-4 text-stone-400 text-center text-6xl font-mono"><a href="/profile">talkBx <span class="underline decoration-pink-400">MVC</span></a></h1>
+    <h1 class="m-2 p-4 text-stone-400 text-center text-6xl font-mono"><a href="/profile">talkBx <span
+          class="underline decoration-pink-400">MVC</span></a></h1>
     
+    <!-- Display all posts made on the application to display our feed -->
     <ul>
       <% for(var i=0; i<posts.length; i++) {%>
-      <li class="p-0.5 border-2 border-stone-400 rounded">
+      <li>
         <div class="flex justify-between">
           <span class="text-xl font-bold"><%= posts[i].title%></span>
           <span><a href=""><%= posts[i].postedByName%></a></span>
@@ -28,7 +30,7 @@
     <div>
       <a href="/profile" class="text-pink-500">Return to Profile</a>
     </div>
-    
+
   </div>
 </div>
 

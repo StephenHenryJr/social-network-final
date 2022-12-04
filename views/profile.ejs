@@ -1,11 +1,12 @@
 <%- include('partials/header') -%>
 
+<!-- Initial setup of our container -->
 <div class="min-h-screen flex justify-center items-center">
-
   <div class="w-fit p-4  rounded-lg bg-slate-50 shadow-xl">
     <h1 class="m-2 p-4 text-stone-400 text-center text-6xl font-mono"><a href="/profile">talkBx <span
           class="underline decoration-pink-400">MVC</span></a></h1>
 
+    <!-- Username display and logout functionality -->
     <div>
       <div class="flex justify-between my-3">
         <div>
@@ -15,16 +16,19 @@
         <span class="text-pink-500"><a href="/logout">Log out</a></span>
       </div>
 
+      <!-- Ability to create a post -->
       <div class="my-3">
         <h2 class="font-bold">Add post:</h2>
         <form action="/post/createPost" enctype="multipart/form-data" method="POST">
           <div>
             <label for="title"></label>
-            <input type="text" id="title" name="title" placeholder="Post Title" class="my-1 p-0.5 border-2 border-stone-400 rounded">
+            <input type="text" id="title" name="title" placeholder="Post Title"
+              class="my-1 p-0.5 border-2 border-stone-400 rounded">
           </div>
           <div>
             <label for="caption"></label>
-            <textarea id="caption" name="caption" placeholder="What's on your mind?" class="my-1 p-0.5 border-2 border-stone-400 rounded"></textarea>
+            <textarea id="caption" name="caption" placeholder="What's on your mind?"
+              class="my-1 p-0.5 border-2 border-stone-400 rounded"></textarea>
           </div>
           <div>
             <label for="imgUpload"></label>
@@ -36,6 +40,7 @@
       </div>
     </div>
 
+    <!-- Display all of our user posts on our profile -->
     <div class="my-3">
       <ul>
         <% for(var i=0; i<posts.length; i++) { %>

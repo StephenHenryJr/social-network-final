@@ -1,8 +1,11 @@
 <%- include('partials/header') -%>
 
+<!-- Initial setup of our container ahd header -->
 <div class="min-h-screen flex justify-center items-center">
   <div class="w-fit p-4  rounded-lg bg-slate-50 shadow-xl">
+    <h1 class="m-2 p-4 text-stone-400 text-center text-6xl font-mono"><a href="/profile">talkBx <span class="underline decoration-pink-400">MVC</span></a></h1>
 
+    <!-- Our post and post details -->
     <div>
       <div class="flex justify-between">
         <h2 class="text-xl font-bold"><%= post.title %></h2>
@@ -14,6 +17,7 @@
         <p><%= post.caption %></p>
       </div>
 
+      <!-- Option to like and delete post (if user is one who made post) -->
       <div class="my-1 flex justify-between">
         <div class="flex">
           <form action="/post/likePost/<%= post.id %>?_method=PUT" method="POST">
@@ -28,37 +32,42 @@
         <%}%>
         </div>
       </div>
-    
-        <div class="my-2">
-          <i class="fa-regular fa-comment"></i>
-          <form action="/comment/createComment/<%=post._id%>" method="POST">
-        <div>
-          <label for="comment"></label>
-          <input type="text" id="comment" name="comment" class="p-0.5 border-2 border-stone-400 rounded">
-        </div>
-        <button type="submit" class="my-1 p-0.5 rounded bg-pink-400 shadow-md text-slate-50 text-xl  hover:bg-pink-500 font-thin">Reply</button>
+      
+
+      <!-- Add a comment to the post -->
+      <div class="my-2">
+        <i class="fa-regular fa-comment"></i>
+        <form action="/comment/createComment/<%=post._id%>" method="POST">
+          <div>
+            <label for="comment"></label>
+            <input type="text" id="comment" name="comment" class="p-0.5 border-2 border-stone-400 rounded">
+          </div>
+          <button type="submit" class="my-1 p-0.5 rounded bg-pink-400 shadow-md text-slate-50 text-xl  hover:bg-pink-500 font-thin">Reply</button>
         </form>
       </div>
 
+      <!-- Display and delete comments -->
+      <!-- Comments displayed are only that of the "post" because the post ID was used as a query param -->
       <div class="p-2 border-2 rounded border-stone-400">
         <h2 class="font-bold">Comments:</h2>
-      <ul>
-        <% for(var i=0; i<comments.length; i++) {%>
-        <li class="my-1 flex justify-between items-end">
-          <div class="flex flex-col">
-            <span><%= comments[i].createdByName%>:</span>
-            <span><%= comments[i].comment%><br></span>
-          </div>
+        <ul>
 
-          <% if(user.id == comments[i].createdById) { %>
-          <form action="/comment/deleteComment/<%=post._id%>/<%= comments[i]._id%>?_method=DELETE" method="POST">
-            <button type="submit" class="fa-regular fa-trash-can px-2"></button>
-          </form>
+          <% for(var i=0; i<comments.length; i++) {%>
+          <li class="my-1 flex justify-between items-end">
+            <div class="flex flex-col">
+              <span><%= comments[i].createdByName%>:</span>
+              <span><%= comments[i].comment%><br></span>
+            </div>
+
+            <% if(user.id == comments[i].createdById) { %>
+            <form action="/comment/deleteComment/<%=post._id%>/<%= comments[i]._id%>?_method=DELETE" method="POST">
+              <button type="submit" class="fa-regular fa-trash-can px-2"></button>
+            </form>
+            <% } %>
+          </li>
           <% } %>
 
-        </li>
-        <% } %>
-      </ul>
+        </ul>
       </div>
 
       <div class="flex justify-between my-2">

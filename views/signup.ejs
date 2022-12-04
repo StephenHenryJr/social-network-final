@@ -1,9 +1,10 @@
 <%- include('partials/header') -%>
 <main>
+  
+  <!-- Initial setup of our container ahd header -->
   <div class="min-h-screen flex justify-center items-center">
     <div class="w-fit p-4  rounded-lg bg-slate-50 shadow-xl">
-      <h1 class="m-2 p-4 text-stone-400 text-center text-6xl font-mono"><a href="/profile">talkBx <span
-            class="underline decoration-pink-400">MVC</span></a></h1>
+      <h1 class="m-2 p-4 text-stone-400 text-center text-6xl font-mono"><a href="/profile">talkBx <span class="underline decoration-pink-400">MVC</span></a></h1>
       <h1 class="text-2xl font-bold">Sign Up:</h1>
       <section>
         <% if (locals.messages.errors) { %>
@@ -16,6 +17,8 @@
         <div><%= el.msg %></div>
         <% }) %>
         <% } %>
+
+        <!-- Our form to sign up to our site -->
         <form action="/signup" method="POST">
           <div class="flex flex-col my-3">
             <label for="userName"></label>

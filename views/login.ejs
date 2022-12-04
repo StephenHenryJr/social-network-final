@@ -1,6 +1,8 @@
 <%- include('partials/header') -%>
 
 <main>
+
+  <!-- Initial setup of our container and header -->
   <div class="min-h-screen flex justify-center items-center">
     <div class="w-fit p-4  rounded-lg bg-slate-50 shadow-xl">
       <h1 class="m-2 p-4 text-stone-400 text-center text-6xl font-mono"><a href="/profile">talkBx <span class="underline decoration-pink-400">MVC</span></a></h1>
@@ -13,7 +15,8 @@
         messages.info.forEach( el => { %>
         <div><%= el.msg %></div>
         <% }) %> <% } %>
-  
+        
+        <!-- Our form to login -->
         <form action="/login" method="POST">
           <div class="flex flex-col my-3">
             <label for="exampleInputEmail1"></label>
