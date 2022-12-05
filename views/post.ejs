@@ -46,24 +46,34 @@
         </form>
       </div>
 
-      <!-- Display and delete comments -->
+      <!-- Display, delete and like comments -->
       <!-- Comments displayed are only that of the "post" because the post ID was used as a query param -->
-      <div class="p-2 border-2 rounded border-stone-400">
+      <div class="">
         <h2 class="font-bold">Comments:</h2>
         <ul>
 
           <% for(var i=0; i<comments.length; i++) {%>
-          <li class="my-1 flex justify-between items-end">
-            <div class="flex flex-col">
-              <span><%= comments[i].createdByName%>:</span>
-              <span><%= comments[i].comment%><br></span>
+          <li class="my-1">
+            <div class="flex justify-between items-end">
+              <div class="flex flex-col">
+                <span><%= comments[i].createdByName%>:</span>
+                <span><%= comments[i].comment%><br></span>
+              </div>
+  
+              <% if(user.id == comments[i].createdById) { %>
+              <form action="/comment/deleteComment/<%=post._id%>/<%= comments[i]._id%>?_method=DELETE" method="POST">
+                <button type="submit" class="fa-regular fa-trash-can"></button>
+              </form>
+              <% } %>
             </div>
 
-            <% if(user.id == comments[i].createdById) { %>
-            <form action="/comment/deleteComment/<%=post._id%>/<%= comments[i]._id%>?_method=DELETE" method="POST">
-              <button type="submit" class="fa-regular fa-trash-can px-2"></button>
-            </form>
-            <% } %>
+            <div class="flex my-1">
+              <form action="/comment/likeComment/<%=post._id%>/<%= comments[i]._id%>?_method=PUT" method="POST">
+                <button type="submit" class="fa-regular fa-thumbs-up"></button>
+              </form>
+              <h3 class="mx-2"><%= comments[i].likes %></h3>
+            </div>
+
           </li>
           <% } %>
 

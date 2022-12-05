@@ -16,6 +16,20 @@ module.exports = {
       console.log(err);
     }
   },
+  likeComment: async (req, res) => {
+    try {
+      await Comment.findOneAndUpdate(
+        { _id: req.params.commentid },
+        {
+          $inc: { likes: 1 },
+        }
+      );
+      console.log("Likes +1");
+      res.redirect("/post/"+req.params.postid);
+    } catch (err) {
+      console.log(err);
+    }
+  },
   deleteComment: async (req, res) => {
     try {
       await Comment.deleteOne({ _id: req.params.commentid });
@@ -25,4 +39,5 @@ module.exports = {
       console.log(err)
     }
   }
+
 };

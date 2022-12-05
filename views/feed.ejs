@@ -9,21 +9,23 @@
     <!-- Display all posts made on the application to display our feed -->
     <ul>
       <% for(var i=0; i<posts.length; i++) {%>
-      <li>
-        <div class="flex justify-between">
-          <span class="text-xl font-bold"><%= posts[i].title%></span>
-          <span><a href=""><%= posts[i].postedByName%></a></span>
+        <div  class="my-6">
+          <li>
+            <div class="flex justify-between">
+              <span class="text-xl font-bold"><%= posts[i].title%></span>
+              <span><a href=""><%= posts[i].postedByName%></a></span>
+            </div>
+            <a href="/post/<%= posts[i]._id%>">
+              <img src="<%= posts[i].image%>" class="m-auto">
+            </a>
+          </li>
+          <div class="flex my-1">
+            <form action="/post/likePost/<%= posts[i]._id %>?_method=PUT" method="POST">
+              <button type="submit" class="fa-regular fa-thumbs-up"></button>
+            </form>
+            <h3 class="mx-2"><%= posts[i].likes %></h3>
+          </div>
         </div>
-        <a href="/post/<%= posts[i]._id%>">
-          <img src="<%= posts[i].image%>" class="m-auto">
-        </a>
-      </li>
-      <div class="flex my-1">
-        <form action="/post/likePost/<%= posts[i]._id %>?_method=PUT" method="POST">
-          <button type="submit" class="fa-regular fa-thumbs-up"></button>
-        </form>
-        <h3 class="mx-2"><%= posts[i].likes %></h3>
-      </div>
       <% } %>
     </ul>
 
